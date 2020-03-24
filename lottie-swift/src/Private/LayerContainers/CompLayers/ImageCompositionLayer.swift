@@ -14,7 +14,10 @@ final class ImageCompositionLayer: CompositionLayer {
   var image: CGImage? = nil {
     didSet {
       if let image = image {
+        CATransaction.begin()
+        CATransaction.setDisableActions(true)
         contentsLayer.contents = image
+        CATransaction.commit()
       } else {
         contentsLayer.contents = nil
       }
